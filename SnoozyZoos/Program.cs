@@ -149,7 +149,7 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
-var challengeFourZooAnimals = zooAnimals.GroupBy(x => x.Location).ToList();
+var challengeFourZooAnimals = zooAnimals.OrderBy(x => x.Location).GroupBy(x => x.Location).ToList();
 
 // Can you write a nested foreach loop to create the expected output above?
 foreach (var animalGroup in challengeFourZooAnimals)
