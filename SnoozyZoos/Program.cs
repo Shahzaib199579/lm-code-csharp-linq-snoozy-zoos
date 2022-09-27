@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SnoozyZoos.Models;
+using System.Security.Cryptography.X509Certificates;
 
 Console.WriteLine("Welcome to the Zookeeper's Zoo Analysis 🦁!");
 
@@ -39,14 +40,16 @@ Cuddles, 4
 Wheezy, 7
 */
 
-/*
-var challengeOneZooAnimals = // Write your LINQ Query here
+
+var challengeOneZooAnimals = from a in zooAnimals
+                             where a.Age > 3 && a.Age < 8
+                             select a;
 
 foreach (var zooAnimal in challengeOneZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -69,14 +72,14 @@ MUMBLE
 ASMODEUS
 */
 
-/*
-var challengeTwoZooAnimals = // Write your LINQ Query here
+
+var challengeTwoZooAnimals = zooAnimals.Where(x => x.Name.Length >= 6).ToList();
 
 foreach (var zooAnimal in challengeTwoZooAnimals)
 {
-    Console.WriteLine($"{zooAnimal}");
+    Console.WriteLine($"{zooAnimal.Name.ToUpper()}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -105,14 +108,14 @@ Dave, 3
 Amber, 2
 */
 
-/* 
-var challengeThreeZooAnimals = // Write your LINQ Query here
+
+var challengeThreeZooAnimals = zooAnimals.OrderByDescending(x => x.Age).ToList();
 
 foreach (var zooAnimal in challengeThreeZooAnimals)
 {
     Console.WriteLine($"{zooAnimal.Name}, {zooAnimal.Age}");
 }
-*/
+
 
 Console.WriteLine("***********************************************");
 
@@ -146,9 +149,17 @@ Zoo Location is: AnimalAdventure
         Hello, my name is Slothu.
 */
 
-// var challengeFourZooAnimals = // Write your LINQ Query here
+var challengeFourZooAnimals = zooAnimals.GroupBy(x => x.Location).ToList();
 
 // Can you write a nested foreach loop to create the expected output above?
+foreach (var animalGroup in challengeFourZooAnimals)
+{
+    Console.WriteLine($"Zoo Location is:{animalGroup.Key}");
+    foreach (var animal in animalGroup)
+    {
+        Console.WriteLine($"Hello, my name is {animal.Name}");
+    }
+}
 
 Console.WriteLine("***********************************************");
 
